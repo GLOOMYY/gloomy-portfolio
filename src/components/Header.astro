@@ -1,14 +1,24 @@
 ---
 import { TITULO } from "../info";
+import HeaderLink from "./HeaderLink.astro";
+
+const links = {
+  Inicio: "/",
+  Blog: "/blog",
+  Proyectos: "/proyectos",
+  "Sobre mi": "/sobre-mi",
+};
 ---
 
 <header>
   <h1>{TITULO}</h1>
-
-  <a href="">Inicio</a>
-  <a href="">Blog</a>
-  <a href="">Proyectos</a>
-  <a href="">Sobre mi</a>
+  <div class="links">
+    {
+      Object.entries(links).map(([title, link]) => (
+        <HeaderLink url={link} title={title} />
+      ))
+    }
+  </div>
 
   <div class="theme">
     <h3>Cambio de tema</h3>
@@ -18,27 +28,19 @@ import { TITULO } from "../info";
 <style>
   header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 
   h1 {
-    float: left;
+    text-align: left;
   }
 
-  a {
-    margin: 0 1rem;
-    text-decoration: none;
-    color: black;
-    padding: 1rem;
-  }
-
-  a:hover {
-    color: #333;
-    transform: scale(1.5, 1.5);
+  .links {
+    text-align: center;
   }
 
   .theme {
-    transform: translate(100%, 0);
+    text-align: right;
   }
 </style>
